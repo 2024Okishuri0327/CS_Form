@@ -15,6 +15,11 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
+
+            TestButton  testbutton = new TestButton();
+            Controls.Add(testbutton);
+
+
         }
     }
 }
