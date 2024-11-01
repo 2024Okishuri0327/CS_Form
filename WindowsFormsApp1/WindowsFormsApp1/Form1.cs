@@ -16,6 +16,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
 
+            /**
             int x = 0;
             int y = 0;
             int flagx = 0;
@@ -41,9 +42,15 @@ namespace WindowsFormsApp1
 
             }
 
+            **/
 
-            for (int c = 0; c <= 10;  c++)
+
+            for (int i = 0; i < 10;  i++)
             {
+                int a =(i + 1) % 10 ;
+                string A = a .ToString();
+                TestButton testbutton = new TestButton((i % 3) *100, (i / 3) * 100, 100, 100, A);
+                Controls.Add(testbutton);
 
             }
 

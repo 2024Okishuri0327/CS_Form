@@ -13,11 +13,11 @@ namespace WindowsFormsApp1
     class TestButton : Button
     {
 
-        public TestButton(int x, int y, int Width, int Height ) 
+        public TestButton(int x, int y, int Width, int Height, string input) 
         {
             // ClickイベントにOnClick関数を登録する
             Click += OnClick;
-            Text = "押すなよ！";
+            Text = input;
 
             Location = new Point(x,y);
             Size = new Size(Width,Height);
@@ -25,7 +25,7 @@ namespace WindowsFormsApp1
 
         public void OnClick(object sender, EventArgs s) 
         {
-            MessageBox.Show("なに押してんだよ！");
+            MessageBox.Show(Text);
         }
     }
 }
