@@ -21,10 +21,10 @@ namespace WindowsFormsApp1
             int flagx = 0;
             int flagy = 0;  
 
-            while (flagx <= 100)
+            while (flagx <= 10)
             {
 
-                while (flagy <= 10)
+                while (flagy <= 100)
                 {
                     TestButton testbutton = new TestButton(x, y, 25, 100);
                     Controls.Add(testbutton);
