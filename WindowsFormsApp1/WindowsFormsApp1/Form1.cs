@@ -16,9 +16,36 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
 
-            TestButton  testbutton = new TestButton();
-            Controls.Add(testbutton);
+            int x = 0;
+            int y = 0;
+            int flagx = 0;
+            int flagy = 0;  
 
+            while (flagx <= 100)
+            {
+
+                while (flagy <= 10)
+                {
+                    TestButton testbutton = new TestButton(x, y, 25, 100);
+                    Controls.Add(testbutton);
+
+                    x += 25;
+                    flagy++;
+
+                }
+
+                y += 100;
+                x = 0;
+                flagy = 0;
+                flagx++;
+
+            }
+
+
+            for (int c = 0; c <= 10;  c++)
+            {
+
+            }
 
         }
     }
