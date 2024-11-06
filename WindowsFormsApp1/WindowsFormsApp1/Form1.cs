@@ -54,6 +54,18 @@ namespace WindowsFormsApp1
 
             }
 
+
+            /*
+            Label label = new Label();
+            label.Location = new Point(30, 400);
+            label.Name = "らべるです";
+            Controls.Add(label);
+            */
+
+            TesrLabel testlabel = new TesrLabel("らべるです", 30, 400, 100, 500);
+            Controls.Add(testlabel);
+
+
         }
     }
 }
