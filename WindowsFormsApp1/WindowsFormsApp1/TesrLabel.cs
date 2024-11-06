@@ -24,6 +24,17 @@ namespace WindowsFormsApp1
 
         }
 
+
+
+        /// <summary>
+        /// ボタンの出力される文字をアップデートする関数
+        /// </summary>
+        /// <param name="str"></param>
+        public void TexTUpdate(string str)
+        {
+            Text = str;
+        }
+
        
 
 

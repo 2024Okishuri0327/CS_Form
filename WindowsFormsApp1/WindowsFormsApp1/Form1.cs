@@ -12,6 +12,8 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
+        TesrLabel _testlabel;
+
         public Form1()
         {
             InitializeComponent();
@@ -44,14 +46,14 @@ namespace WindowsFormsApp1
 
             **/
 
+            string A = "ネコ";
 
             for (int i = 0; i < 10;  i++)
             {
                 int a =(i + 1) % 10 ;
-                string A = a .ToString();
-                TestButton testbutton = new TestButton((i % 3) *100, (i / 3) * 100, 100, 100, A);
+                TestButton testbutton = new TestButton(this, (i % 3) *100, (i / 3) * 100, 100, 100, A);
                 Controls.Add(testbutton);
-
+                A = A + A;
             }
 
 
@@ -62,10 +64,21 @@ namespace WindowsFormsApp1
             Controls.Add(label);
             */
 
-            TesrLabel testlabel = new TesrLabel("らべるです", 30, 400, 100, 500);
-            Controls.Add(testlabel);
+            _testlabel = new TesrLabel("らべるです", 30, 400, 100, 500);
+            Controls.Add(_testlabel);
+
+
+
+
 
 
         }
+
+        public void LabelTextUpdate(string str)
+        {
+            _testlabel.TexTUpdate(str);
+        }
+
+
     }
 }
