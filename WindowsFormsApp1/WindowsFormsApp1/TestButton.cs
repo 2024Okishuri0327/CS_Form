@@ -14,14 +14,14 @@ namespace WindowsFormsApp1
     {
         Form1 _form1;
 
-        public TestButton(Form1 form1, int x, int y, int Width, int Height, string input) 
+        public TestButton(Form1 form1, int x, int y, int Width, int Height, string id) 
         {
 
             _form1 = form1;
 
             // ClickイベントにOnClick関数を登録する
             Click += OnClick;
-            Text = input;
+            Text = id;
 
             Location = new Point(x,y);
             Size = new Size(Width,Height);

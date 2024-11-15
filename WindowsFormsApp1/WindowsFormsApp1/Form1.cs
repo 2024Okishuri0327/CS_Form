@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,14 +47,13 @@ namespace WindowsFormsApp1
 
             **/
 
-            string A = "ネコ";
+            string[] str = new string[10] {"明","日","今","日","よ","り","も","強","く","な"};
 
             for (int i = 0; i < 10;  i++)
             {
                 int a =(i + 1) % 10 ;
-                TestButton testbutton = new TestButton(this, (i % 3) *100, (i / 3) * 100, 100, 100, A);
+                TestButton testbutton = new TestButton(this, (i % 3) *100, (i / 3) * 100, 100, 100, str[i]);
                 Controls.Add(testbutton);
-                A = A + A;
             }
 
 
