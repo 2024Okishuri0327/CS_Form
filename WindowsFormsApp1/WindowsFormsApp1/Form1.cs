@@ -13,7 +13,11 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
+        TestButton _testButton;
+        
         TesrLabel _testlabel;
+
+        TestTextBox _testtextbox;
 
         public Form1()
         {
@@ -49,12 +53,14 @@ namespace WindowsFormsApp1
 
             string[] str = new string[10] {"明","日","今","日","よ","り","も","強","く","な"};
 
-            for (int i = 0; i < 10;  i++)
-            {
-                int a =(i + 1) % 10 ;
-                TestButton testbutton = new TestButton(this, (i % 3) *100, (i / 3) * 100, 100, 100, str[i]);
-                Controls.Add(testbutton);
-            }
+
+                for (int i = 0; i < 10; i++)
+                {
+                    int a = (i + 1) % 10;
+                    _testButton = new TestButton(this, (i % 3) * 100, (i / 3) * 100, 100, 100, str[i]);
+                    Controls.Add(_testButton);
+                }
+
 
 
             /*
@@ -64,19 +70,34 @@ namespace WindowsFormsApp1
             Controls.Add(label);
             */
 
+            //ラベルの作成
             _testlabel = new TesrLabel("らべるです", 30, 400, 100, 500);
+            //ラベルの追加
             Controls.Add(_testlabel);
 
-
+            //テキストボックスの作成
+            _testtextbox = new TestTextBox("る", 150, 400, 1000, 500);
+            //テキストボックスの追加
+            Controls.Add(_testtextbox);
 
 
 
 
         }
 
+        public void ButtonTextUpdate(string str)
+        {
+            _testButton.TexTUpdateButton(str);
+        }
+
         public void LabelTextUpdate(string str)
         {
             _testlabel.TexTUpdate(str);
+        }
+
+        public void BoxTextUpdate(string str)
+        {
+            _testtextbox.TexTUpdateBox(str);
         }
 
 
