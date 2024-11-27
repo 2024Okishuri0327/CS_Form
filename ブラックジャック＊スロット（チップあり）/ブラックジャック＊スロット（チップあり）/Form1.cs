@@ -40,12 +40,10 @@ namespace ブラックジャック_スロット_チップあり_
             Reel Reel3 = new Reel(x, y+50*2);
             Controls.Add(Reel3);
 
-            Label Re_Alpha = new Label();
-            Re_Alpha.Text = Reel1.Text+Reel2.Text+Reel3.Text;
-            Re_Alpha.Location = new Point(x, y+50*3);
+            ReelReturn Re_Alpha = new ReelReturn(Reel1, Reel2, Reel3, x, y);
             Controls.Add(Re_Alpha);
 
-            SpinButton SpinButton = new SpinButton(Reel1,Reel2,Reel3,x-10,y+50*4);
+            SpinButton SpinButton = new SpinButton(Reel1,Reel2,Reel3, x-10,y+50*4);
             Controls.Add(SpinButton);
 
 

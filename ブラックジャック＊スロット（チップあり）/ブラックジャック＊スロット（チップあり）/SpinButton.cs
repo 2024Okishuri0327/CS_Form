@@ -17,6 +17,7 @@ namespace ブラックジャック_スロット_チップあり_
         private Reel Reel_x;
         private Reel Reel_y;
         private Reel Reel_z;
+        private ReelReturn ReelReturn_x;
 
         public SpinButton(Reel reel_x, Reel reel_y, Reel reel_z, int x, int y)
         {
@@ -34,9 +35,13 @@ namespace ブラックジャック_スロット_チップあり_
         {
             try
             {
+                //Reelの数字をGetRandamSymbolから引っ張ってくる
                 Reel_x.Text = Reel_x.GetRandomSymbol().ToString();
                 Reel_y.Text = Reel_y.GetRandomSymbol().ToString();
                 Reel_z.Text = Reel_z.GetRandomSymbol().ToString();
+
+                int Num = (Reel_x.GetRandomSymbol() + Reel_y.GetRandomSymbol() + Reel_z.GetRandomSymbol());
+                ReelReturn_x.Text = Num.ToString();
 
             }
             catch(Exception ex)

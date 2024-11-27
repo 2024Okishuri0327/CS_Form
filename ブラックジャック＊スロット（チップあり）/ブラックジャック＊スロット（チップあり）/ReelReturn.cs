@@ -13,9 +13,13 @@ namespace ブラックジャック_スロット_チップあり_
     {
         Reel _Reel;
 
-        public ReelReturn(Reel Reel_x) 
+        public ReelReturn( Reel Reel_x, Reel Reel_y, Reel Reel_z,int x, int y)
         {
-        
+            _Reel = Reel_x;
+            _Reel = Reel_y;
+            _Reel = Reel_z;
+            Location = new Point(x, y + 50 * 3);
+
         }
 
     }

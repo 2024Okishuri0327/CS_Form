@@ -17,12 +17,15 @@ namespace ブラックジャック_スロット_チップあり_
 
         public Reel(int x, int y)
         {
+            
             Location = new Point(x, y);
             Size = new Size(50,50);
             this.Font = new System.Drawing.Font(this.Font.FontFamily, 24);
             Text = "NN ";
             TextAlign = ContentAlignment.MiddleCenter;
+
         }
+
 
         public int GetRandomSymbol()
         {
