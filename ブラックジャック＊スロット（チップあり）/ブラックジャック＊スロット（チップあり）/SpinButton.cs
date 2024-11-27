@@ -14,22 +14,35 @@ namespace ブラックジャック_スロット_チップあり_
         /// <summary>
         /// クラス名Reelの汎用変数名
         /// </summary>
-        private  Reel _Reel;
+        private Reel Reel_x;
+        private Reel Reel_y;
+        private Reel Reel_z;
 
-        public SpinButton(int x, int y)
+        public SpinButton(Reel reel_x, Reel reel_y, Reel reel_z, int x, int y)
         {
-            Text = "Spin";
+            Reel_x = reel_x;
+            Reel_y = reel_y;
+            Reel_z = reel_z;
             Location = new Point(x, y);
+            Size = new Size(70, 25); 
             Click += new EventHandler(SpinButton_Click);
-            string Retrun = _Reel.Text;
-
+            Text = "Spin";   
 
         }
 
         private void SpinButton_Click(object sender, EventArgs e)
         {
-            _Reel.Text = _Reel.GetRandamSymbol().ToString();
+            try
+            {
+                Reel_x.Text = Reel_x.GetRandomSymbol().ToString();
+                Reel_y.Text = Reel_y.GetRandomSymbol().ToString();
+                Reel_z.Text = Reel_z.GetRandomSymbol().ToString();
 
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
         }
 
 

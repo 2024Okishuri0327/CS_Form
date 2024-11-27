@@ -23,15 +23,33 @@ namespace ブラックジャック_スロット_チップあり_
             //引数２が横の位置
             //引数３が縦の位置
 
-            //Reelを表示するコード。Reelは横１５０
+            //Reelを表示するコード。Reelは横１５０縦５０差。SpinButtonは横１４０縦３００
             //
             //
 
-            Reel Reel = new Reel(150, 150);
-            Controls.Add(Reel);
+            // SpinReel_Alpha
+            int x = 150;
+            int y = 150;
 
-            SpinButton SpinButton = new SpinButton(200,200);
+            Reel Reel1 = new Reel(x, y+50*0);
+            Controls.Add(Reel1);
+
+            Reel Reel2 = new Reel(x, y+50*1);
+            Controls.Add(Reel2);
+
+            Reel Reel3 = new Reel(x, y+50*2);
+            Controls.Add(Reel3);
+
+            Label Re_Alpha = new Label();
+            Re_Alpha.Text = Reel1.Text+Reel2.Text+Reel3.Text;
+            Re_Alpha.Location = new Point(x, y+50*3);
+            Controls.Add(Re_Alpha);
+
+            SpinButton SpinButton = new SpinButton(Reel1,Reel2,Reel3,x-10,y+50*4);
             Controls.Add(SpinButton);
+
+
+
 
 
             

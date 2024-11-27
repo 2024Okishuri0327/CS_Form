@@ -64,6 +64,9 @@
     <Compile Include="Reel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReelReturn.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="SpinButton.cs">
       <SubType>Component</SubType>
     </Compile>
