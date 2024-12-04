@@ -19,13 +19,12 @@ namespace ブラックジャック_スロット_チップあり_
         private Reel Reel_z;
         private ReelReturn ReelReturn_x;
 
-        public SpinButton(Reel reel_x, Reel reel_y, Reel reel_z, int x, int y)
+        public SpinButton(Reel reel_x,ReelReturn reelreturn, int x, int y)
         {
             Reel_x = reel_x;
-            Reel_y = reel_y;
-            Reel_z = reel_z;
+            ReelReturn_x = reelreturn;
             Location = new Point(x, y);
-            Size = new Size(70, 25); 
+            Size = new Size(50, 25); 
             Click += new EventHandler(SpinButton_Click);
             Text = "Spin";   
 
@@ -33,16 +32,19 @@ namespace ブラックジャック_スロット_チップあり_
 
         private void SpinButton_Click(object sender, EventArgs e)
         {
+
             try
             {
                 //Reelの数字をGetRandamSymbolから引っ張ってくる
-                Reel_x.Text = Reel_x.GetRandomSymbol().ToString();
-                Reel_y.Text = Reel_y.GetRandomSymbol().ToString();
-                Reel_z.Text = Reel_z.GetRandomSymbol().ToString();
+                int Reel_x_Num = Reel_x.GetRandomSymbol();
+                Reel_x.Text = Reel_x_Num.ToString();
 
-                int Num = (Reel_x.GetRandomSymbol() + Reel_y.GetRandomSymbol() + Reel_z.GetRandomSymbol());
+                //1*3と確定したら消す
+                //int Num = (Reel_x.GetRandomSymbol() + Reel_y.GetRandomSymbol() + Reel_z.GetRandomSymbol());
+                //ReelReturn_x.Text = Num.ToString();
+                int Num = 0;
+                Num =+ (Reel_x_Num);
                 ReelReturn_x.Text = Num.ToString();
-
             }
             catch(Exception ex)
             {

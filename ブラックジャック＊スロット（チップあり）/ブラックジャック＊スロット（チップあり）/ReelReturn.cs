@@ -18,8 +18,8 @@ namespace ブラックジャック_スロット_チップあり_
             _Reel = Reel_x;
             _Reel = Reel_y;
             _Reel = Reel_z;
-            Location = new Point(x, y + 50 * 3);
-
+            Location = new Point(x, y);
+            Size = new Size(50,50);
         }
 
     }

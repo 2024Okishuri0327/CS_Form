@@ -19,9 +19,10 @@ namespace ブラックジャック_スロット_チップあり_
         {
             
             Location = new Point(x, y);
-            Size = new Size(50,50);
-            this.Font = new System.Drawing.Font(this.Font.FontFamily, 24);
-            Text = "NN ";
+            int size = 50;
+            Size = new Size(size,size);
+            this.Font = new System.Drawing.Font(this.Font.FontFamily, size*4/5);
+            Text = "7 ";
             TextAlign = ContentAlignment.MiddleCenter;
 
         }
