@@ -2,56 +2,104 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ブラックジャック_スロット_チップあり_
 {
-    internal class SpinButton:Button
+    public class SpinButton : Button
     {
-
-        /// <summary>
-        /// クラス名Reelの汎用変数名
-        /// </summary>
         private Reel Reel_x;
-        private Reel Reel_y;
-        private Reel Reel_z;
         private ReelReturn ReelReturn_x;
+        public event EventHandler PressCountChanged;
+        private List<SpinButton> spinButtons;
+        private Timer resetTimer;
+        public int totalSum = 0; // 合計を保持する変数
 
-        public SpinButton(Reel reel_x,ReelReturn reelreturn, int x, int y)
+        public SpinButton(Reel reel_x, ReelReturn reelreturn, int x, int y, List<SpinButton> buttons)
         {
             Reel_x = reel_x;
             ReelReturn_x = reelreturn;
             Location = new Point(x, y);
-            Size = new Size(50, 25); 
+            Size = new Size(50, 25);
+            Text = "Spin";
             Click += new EventHandler(SpinButton_Click);
-            Text = "Spin";   
 
+            spinButtons = buttons; // Form1から渡されたリストを使用
+
+            // タイマーを初期化
+            resetTimer = new Timer
+            {
+                Interval = 3000 // 3秒後にリセット
+            };
+            resetTimer.Tick += new EventHandler(ResetTimer_Tick);
         }
 
         private void SpinButton_Click(object sender, EventArgs e)
         {
-
             try
             {
-                //Reelの数字をGetRandamSymbolから引っ張ってくる
-                int Reel_x_Num = Reel_x.GetRandomSymbol();
-                Reel_x.Text = Reel_x_Num.ToString();
+                Form1.Button_Press_Cnt++;
 
-                //1*3と確定したら消す
-                //int Num = (Reel_x.GetRandomSymbol() + Reel_y.GetRandomSymbol() + Reel_z.GetRandomSymbol());
-                //ReelReturn_x.Text = Num.ToString();
-                int Num = 0;
-                Num =+ (Reel_x_Num);
-                ReelReturn_x.Text = Num.ToString();
+                if (Form1.Button_Press_Cnt < 3)
+                {
+                    // Reelの数字をGetRandomSymbolから引っ張ってくる
+                    string Reel_x_Num = Reel_x.GetRandomSymbol();
+                    Reel_x.Text = Reel_x_Num;
+
+                    // ReelReturn_xに値を設定
+                    ReelReturn_x.Text = Reel_x_Num;
+
+                    // 合計を計算して表示
+                    totalSum += ConvertValue(Reel_x_Num);
+                }
+                else if (Form1.Button_Press_Cnt == 3)
+                {
+                    Text = "Reset";
+                    foreach (var button in spinButtons)
+                    {
+                        button.Text = "Reset";
+                    }
+                    resetTimer.Start(); // タイマーを開始
+                }
+                else if (Text == "Reset")
+                {
+                    Form1.Button_Press_Cnt = 0;
+                    Text = "Spin";
+                    foreach (var button in spinButtons)
+                    {
+                        button.Text = "Spin";
+                    }
+                }
+
+                PressCountChanged?.Invoke(this, EventArgs.Empty);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}");
             }
         }
 
+        private void ResetTimer_Tick(object sender, EventArgs e)
+        {
+            resetTimer.Stop(); // タイマーを停止
+            Form1.Button_Press_Cnt = 0;
+            foreach (var button in spinButtons) // すべてボタンのテキストを「Spin」に戻す
+            {
+                button.Text = "Spin";
+            }
+            
+        }
 
+        private int ConvertValue(string value)
+        {
+            if (value == "J" || value == "Q" || value == "K")
+            {
+                return 10;
+            }
+            return int.TryParse(value, out int result) ? result : 0;
+        }
     }
 }

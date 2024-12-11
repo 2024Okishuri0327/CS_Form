@@ -12,7 +12,7 @@ namespace ブラックジャック_スロット_チップあり_
     public class Reel : Label
     {
 
-        List<int> symbols = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
+        List<string> symbols = new List<string> { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
         Random random = new Random();
 
         public Reel(int x, int y)
@@ -21,17 +21,17 @@ namespace ブラックジャック_スロット_チップあり_
             Location = new Point(x, y);
             int size = 50;
             Size = new Size(size,size);
-            this.Font = new System.Drawing.Font(this.Font.FontFamily, size*4/5);
+            this.Font = new System.Drawing.Font(this.Font.FontFamily, size*3/5);
             Text = "7 ";
             TextAlign = ContentAlignment.MiddleCenter;
 
         }
 
 
-        public int GetRandomSymbol()
+        public string GetRandomSymbol()
         {
             int index = random.Next(symbols.Count);
-            return symbols[index];
+            return (symbols[index]);
         }
     }
 
