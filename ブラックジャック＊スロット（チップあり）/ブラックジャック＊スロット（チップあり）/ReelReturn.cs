@@ -22,7 +22,7 @@ namespace ブラックジャック_スロット_チップあり_
             _ReelZ = Reel_z;
             Location = new Point(x, y);
             Size = new Size(50, 50);
-            Text = SpinButton.totalSum
+            //Text = SpinButton.totalSum;
         }
 
     }

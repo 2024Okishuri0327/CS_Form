@@ -10,6 +10,7 @@ namespace ブラックジャック_スロット_チップあり_
 {
     internal class Dealer : Label
     {
+        private int Dnumber;
         List<int> Dsymbols = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
         Random random = new Random();
         private Timer displayTimer;
@@ -20,9 +21,9 @@ namespace ブラックジャック_スロット_チップあり_
         public Dealer(int x, int y)
         {
             Location = new Point(x, y);
-            int size = 50;
+            int size = 150;
             Size = new Size(size, size);
-            this.Font = new System.Drawing.Font(this.Font.FontFamily, size * 3 / 5);
+            this.Font = new System.Drawing.Font(this.Font.FontFamily, size * 1 / 5);
             Text = "ディーラー";
 
             // タイマーを初期化
@@ -35,12 +36,14 @@ namespace ブラックジャック_スロット_チップあり_
         public int GetRandomSymbol()
         {
             int index = random.Next(Dsymbols.Count);
-            return Dsymbols[index];
+            Dnumber = Dnumber + Dsymbols[index]; //リストの整数値を引っ張る時に加算しておくと、合計値が求められる
+            return Dnumber;
         }
 
         // ディーラーの合計を計算して表示するメソッドを追加
         public void DisplayDealerTotal()
         {
+            Dnumber = 0;
             total = 0; // totalを初期化
             count = 0;
             work = 0;
