@@ -16,7 +16,8 @@ namespace ブラックジャック_スロット_チップあり_
         public Label countLabel;
         public static int Button_Press_Cnt;
         public List<SpinButton> spinButtons = new List<SpinButton>();
-        private Dealer dealer; // Dealerのインスタンスを保持するフィールドを追加
+        private Dealer dealer = new Dealer(750, 150); // 必要なパラメータを渡して初期化 // Dealerのインスタンスを保持するフィールドを追加
+        private ReelReturn Re_Alpha;
 
         public Form1()
         {
@@ -26,6 +27,7 @@ namespace ブラックジャック_スロット_チップあり_
             InitializeReelsAndButtons();
             InitializeDealer();
             InitializeCountLabel();
+            //InitializeCompare();
 
 
         }
@@ -47,7 +49,8 @@ namespace ブラックジャック_スロット_チップあり_
             Reel Reel3 = new Reel(x + 300, y);
             Controls.Add(Reel3);
 
-            ReelReturn Re_Alpha = new ReelReturn(Reel1, Reel2, Reel3, x + 450, y + 75);
+            //ReelReturn Re_Alpha = new ReelReturn(Reel1, Reel2, Reel3, x + 450, y + 75);
+            Re_Alpha = new ReelReturn( x + 450, y + 75);
             Controls.Add(Re_Alpha);
 
             AddSpinButton(Reel1, Re_Alpha, x, y + 75);
@@ -58,7 +61,7 @@ namespace ブラックジャック_スロット_チップあり_
         // SpinButtonの追加をメソッド化
         private void AddSpinButton(Reel reel, ReelReturn reelReturn, int x, int y)
         {
-            SpinButton spinButton = new SpinButton(reel, reelReturn, x, y, spinButtons);
+            SpinButton spinButton = new SpinButton(reel, reelReturn, dealer, Re_Alpha, x, y, spinButtons);
             Controls.Add(spinButton);
             spinButton.PressCountChanged += SpinButton_PressCountChanged;
             spinButtons.Add(spinButton);
@@ -98,5 +101,8 @@ namespace ブラックジャック_スロット_チップあり_
                 dealer.DisplayDealerTotal(); // ディーラーの合計を表示
             }
         }
+
+
     }
+
 }

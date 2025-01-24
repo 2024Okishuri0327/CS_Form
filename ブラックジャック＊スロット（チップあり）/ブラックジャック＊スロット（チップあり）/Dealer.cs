@@ -8,18 +8,21 @@ using System.Windows.Forms;
 
 namespace ブラックジャック_スロット_チップあり_
 {
-    internal class Dealer : Label
+    public class Dealer : Label
     {
-        private int Dnumber;
-        List<int> Dsymbols = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
+        public int Dnumber { get; set; } // プロパティとして定義し、初期化
+
+        List<int> Dsymbols = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 };
         Random random = new Random();
         private Timer displayTimer;
         private int total;
-        private int count;
+        public int count;
         private int work;
 
         public Dealer(int x, int y)
         {
+            Dnumber = 0; // Dnumberを初期化
+
             Location = new Point(x, y);
             int size = 150;
             Size = new Size(size, size);
@@ -30,13 +33,12 @@ namespace ブラックジャック_スロット_チップあり_
             displayTimer = new Timer();
             displayTimer.Interval = 1000; // 1秒ごとに更新
             displayTimer.Tick += new EventHandler(DisplayTimer_Tick);
-
         }
 
         public int GetRandomSymbol()
         {
             int index = random.Next(Dsymbols.Count);
-            Dnumber = Dnumber + Dsymbols[index]; //リストの整数値を引っ張る時に加算しておくと、合計値が求められる
+            Dnumber = Dnumber + Dsymbols[index]; // リストの整数値を引っ張る時に加算しておくと、合計値が求められる
             return Dnumber;
         }
 
@@ -60,7 +62,7 @@ namespace ブラックジャック_スロット_チップあり_
                 Text = $"{work}"; // ランダムな数値を表示
                 count++;
             }
-            else
+            else if(count >= 3)
             {
                 displayTimer.Stop(); // タイマーを停止
             }
